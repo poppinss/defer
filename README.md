@@ -29,6 +29,17 @@ queue.push(async function taskOne() {
 console.log('Will be logged before the above log')
 ```
 
+You may also register a task as an object with `name` and `run` properties. The `name` is used for monitoring and the `run` method is the implementation callback.
+
+```ts
+queue.push({
+  name: 'taskOne',
+  async run() {
+    console.log('The method will be called in the background')
+  },
+})
+```
+
 ### Monitoring queue for completed tasks and errors
 
 Since the callback provided to the `queue.push` method runs in the background, there is no way to immediately await the callback to access the result or handle errors. Instead, you must use the `onError` and `taskCompleted` methods to monitor the queue.
@@ -52,7 +63,7 @@ queue.drained = function () {
 }
 ```
 
-## Pausing/resuming the queue
+### Pausing/resuming the queue
 
 You may pause the queue from processing tasks using the `queue.pause` method and resume it using the `queue.resume` method.
 
@@ -69,7 +80,7 @@ queue.size() // 3
 queue.resume()
 ```
 
-## Killing the queue
+### Killing the queue
 
 You may remove all the tasks from the queue using the `queue.kill` method. This method removes all the pending tasks from the queue and invokes the `drain` handler.
 
@@ -77,6 +88,14 @@ You may remove all the tasks from the queue using the `queue.kill` method. This 
 process.on('beforeExit', () => {
   queue.kill()
 })
+```
+
+### Concurrency
+
+By default, 10 tasks are processed concurrently. However, you can specify the concurrency at the time of creating the queue instance.
+
+```ts
+const queue = new DeferQueue({ concurrency: 4 })
 ```
 
 ## Testing
