@@ -57,7 +57,11 @@
   "bugs": {
     "url": "https://github.com/poppinss/defer/issues"
   },
-  "keywords": [],
+  "keywords": [
+    "defer",
+    "queue",
+    "memory-queue"
+  ],
   "author": "Harminder Virk <virk@adonisjs.com>",
   "license": "MIT",
   "publishConfig": {
