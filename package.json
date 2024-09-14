@@ -1,0 +1,115 @@
+{
+  "name": "@poppinss/defer",
+  "description": "A managed deferred queue to run async operations in the background",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "type": "module",
+  "files": [
+    "build",
+    "!build/bin",
+    "!build/tests"
+  ],
+  "main": "build/index.js",
+  "exports": {
+    ".": "./build/index.js"
+  },
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "c8 npm run quick:test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "precompile": "npm run lint",
+    "compile": "tsup-node && tsc --emitDeclarationOnly --declaration",
+    "build": "npm run compile",
+    "version": "npm run build",
+    "prepublishOnly": "npm run build",
+    "release": "release-it",
+    "quick:test": "node --import=ts-node-maintained/register/esm --enable-source-maps bin/test.ts"
+  },
+  "devDependencies": {
+    "@adonisjs/eslint-config": "^2.0.0-beta.6",
+    "@adonisjs/prettier-config": "^1.4.0",
+    "@adonisjs/tsconfig": "^1.4.0",
+    "@japa/assert": "^3.0.0",
+    "@japa/expect": "^3.0.2",
+    "@japa/expect-type": "^2.0.2",
+    "@japa/file-system": "^2.3.0",
+    "@japa/runner": "^3.1.4",
+    "@release-it/conventional-changelog": "^8.0.2",
+    "@swc/core": "^1.7.26",
+    "@types/node": "^22.5.5",
+    "c8": "^10.1.2",
+    "eslint": "^9.10.0",
+    "prettier": "^3.3.3",
+    "release-it": "^17.6.0",
+    "ts-node-maintained": "^10.9.4",
+    "tsup": "^8.2.4",
+    "typescript": "^5.6.2"
+  },
+  "homepage": "https://github.com/poppinss/defer#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poppinss/defer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/poppinss/defer/issues"
+  },
+  "keywords": [],
+  "author": "Harminder Virk <virk@adonisjs.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "provenance": true
+  },
+  "tsup": {
+    "entry": [
+      "index.ts",
+      "src/types.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": false,
+    "sourcemap": true,
+    "target": "esnext"
+  },
+  "release-it": {
+    "git": {
+      "requireCleanWorkingDir": true,
+      "requireUpstream": true,
+      "commitMessage": "chore(release): ${version}",
+      "tagAnnotation": "v${version}",
+      "push": true,
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": true,
+      "skipChecks": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": {
+          "name": "angular"
+        }
+      }
+    }
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "prettier": "@adonisjs/prettier-config",
+  "dependencies": {
+    "fastq": "^1.17.1"
+  }
+}
