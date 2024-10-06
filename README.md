@@ -124,15 +124,15 @@ refreshCache()
 // HOW DO WE KNOW IF THE CACHE WAS REFRESHED??
 ```
 
-You can linearly `await` the completion of a task using the `queue.createMonitor` method. The `createMonitor` method returns a promise that will be resolved after completing the task.
+You can linearly `await` the completion of a task using the `queue.createNotifier` method. The `createNotifier` method returns a promise that will be resolved after completing the task.
 
 ```ts
 import { queue, refreshCache } from './some-file.js'
 
-const monitor = queue.createMonitor()
+const notifier = queue.createNotifier()
 refreshCache()
 
-await monitor
+await notifier
 /**
  * Task has been processed. You can now check if the
  * cache has been refreshed
