@@ -8,7 +8,7 @@
  */
 
 import fastq from 'fastq'
-import { DeferCallback, QueueOptions } from './types.js'
+import { type DeferCallback, type QueueOptions } from './types.js'
 
 /**
  * Deferred promise encapsulates a promise that can be
