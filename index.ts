@@ -7,4 +7,4 @@
  * file that was distributed with this source code.
  */
 
-export { DeferQueue } from './src/queue.js'
+export { DeferQueue } from './src/queue.ts'

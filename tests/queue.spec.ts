@@ -8,7 +8,7 @@
  */
 
 import { test } from '@japa/runner'
-import { DeferQueue } from '../src/queue.js'
+import { DeferQueue } from '../src/queue.ts'
 
 test.group('Queue', () => {
   test('add callback to the queue and execute it', async ({ expect }) => {
