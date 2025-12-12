@@ -55,7 +55,7 @@ queue.taskCompleted = function (task) {
 }
 ```
 
-You may use the `query.drained` method to get notified when the worker has processed the last task.
+You may use the `queue.drained` method to get notified when the worker has processed the last task.
 
 ```ts
 queue.drained = function () {
